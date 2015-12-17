@@ -7,7 +7,8 @@
  */
 
 
-class ImageExtension extends DataExtension {
+class ImageExtension extends DataExtension
+{
 
     /**
      * make ResizeByWidth an alias for SetWidth, which is already in Image.php
@@ -16,7 +17,8 @@ class ImageExtension extends DataExtension {
      * @param int     $width
      * @return Image
      */
-    public function ResizeByWidth($width) {
+    public function ResizeByWidth($width)
+    {
         return $this->getAnnotatedImage('SetWidth', $width);
     }
 
@@ -28,7 +30,8 @@ class ImageExtension extends DataExtension {
      * @param unknown $height
      * @return Image
      */
-    public function ResizeByHeight($height) {
+    public function ResizeByHeight($height)
+    {
         return $this->getAnnotatedImage('SetHeight', $height);
     }
 
@@ -39,7 +42,8 @@ class ImageExtension extends DataExtension {
      * @param int     $width
      * @return Image
      */
-    public function SetWidth($width) {
+    public function SetWidth($width)
+    {
         return $this->getAnnotatedImage('SetWidth', $width);
     }
 
@@ -50,7 +54,8 @@ class ImageExtension extends DataExtension {
      * @param unknown $height
      * @return Image
      */
-    public function SetHeight($height) {
+    public function SetHeight($height)
+    {
         return $this->getAnnotatedImage('SetHeight', $height);
     }
 
@@ -61,7 +66,8 @@ class ImageExtension extends DataExtension {
      * @param string  $size width and height like: '100x200'
      * @return Image
      */
-    public function SetSize($size) {
+    public function SetSize($size)
+    {
         list($width, $height) = preg_split('/\D/', $size);
         return $this->getAnnotatedImage('SetSize', $width, $height);
     }
@@ -74,7 +80,8 @@ class ImageExtension extends DataExtension {
      * @param string  $size width and height like: '100x200'
      * @return Image
      */
-    public function Resize($size) {
+    public function Resize($size)
+    {
         list($width, $height) = preg_split('/\D/', $size);
         return $this->getAnnotatedImage('Resize', $width, $height);
     }
@@ -87,7 +94,8 @@ class ImageExtension extends DataExtension {
      * @param string  $size width and height like: '100x200'
      * @return Image
      */
-    public function PaddedResize($size) {
+    public function PaddedResize($size)
+    {
         list($width, $height) = preg_split('/\D/', $size);
         return $this->getAnnotatedImage('PaddedResize', $width, $height);
     }
@@ -100,7 +108,8 @@ class ImageExtension extends DataExtension {
      * @param string  $size width and height like: '100x200'
      * @return Image
      */
-    public function CroppedResize($size) {
+    public function CroppedResize($size)
+    {
         list($width, $height) = preg_split('/\D/', $size);
         return $this->getAnnotatedImage('CroppedResize', $width, $height);
     }
@@ -113,7 +122,8 @@ class ImageExtension extends DataExtension {
      * @param string  $size width and height like: '100x200'
      * @return Image
      */
-    public function ResizeRatio($size) {
+    public function ResizeRatio($size)
+    {
         list($width, $height) = preg_split('/\D/', $size);
         return $this->getAnnotatedImage('ResizeRatio', $width, $height);
     }
@@ -125,7 +135,8 @@ class ImageExtension extends DataExtension {
      * @param string  $size width and height like: '100x200'
      * @return Image
      */
-    public function TopCroppedResize($size) {
+    public function TopCroppedResize($size)
+    {
         list($width, $height) = preg_split('/\D/', $size);
         return $this->getAnnotatedImage('TopCroppedResize', $width, $height);
     }
@@ -138,7 +149,8 @@ class ImageExtension extends DataExtension {
      * @param int     $angle
      * @return Image
      */
-    public function Rotate($angle) {
+    public function Rotate($angle)
+    {
         return $this->getAnnotatedImage('Rotate', $angle);
     }
 
@@ -171,7 +183,8 @@ class ImageExtension extends DataExtension {
      * @param int     $height
      * @return GD
      */
-    public function generateResize($gd, $width, $height) {
+    public function generateResize($gd, $width, $height)
+    {
         return $gd->resize($width, $height);
     }
 
@@ -184,7 +197,8 @@ class ImageExtension extends DataExtension {
      * @param int     $height
      * @return GD
      */
-    public function generatePaddedResize($gd, $width, $height) {
+    public function generatePaddedResize($gd, $width, $height)
+    {
         return $gd->paddedResize($width, $height);
     }
 
@@ -197,7 +211,8 @@ class ImageExtension extends DataExtension {
      * @param int     $height
      * @return GD
      */
-    public function generateCroppedResize($gd, $width, $height) {
+    public function generateCroppedResize($gd, $width, $height)
+    {
         return $gd->croppedResize($width, $height);
     }
 
@@ -210,7 +225,8 @@ class ImageExtension extends DataExtension {
      * @param int     $height
      * @return GD
      */
-    public function generateResizeRatio($gd, $width, $height) {
+    public function generateResizeRatio($gd, $width, $height)
+    {
         return $gd->resizeRatio($width, $height);
     }
 
@@ -222,7 +238,8 @@ class ImageExtension extends DataExtension {
      * @param int     $angle
      * @return GD
      */
-    public function generateRotate($gd, $angle) {
+    public function generateRotate($gd, $angle)
+    {
         return $gd->rotate($angle);
     }
 
@@ -236,7 +253,8 @@ class ImageExtension extends DataExtension {
      * @param unknown $height
      * @return unknown
      */
-    public function generateTopCroppedResize($gd, $width, $height) {
+    public function generateTopCroppedResize($gd, $width, $height)
+    {
 
         # resize
         $gd = $gd->resizeByWidth($width);
@@ -264,8 +282,9 @@ class ImageExtension extends DataExtension {
      * @param int     $height (optional)
      * @return string
      */
-    function getTag($width = null, $height = null) {
-        if ( file_exists( "../" . $this->owner->Filename ) ) {
+    public function getTag($width = null, $height = null)
+    {
+        if (file_exists("../" . $this->owner->Filename)) {
             $url    = $this->owner->URL();
             $title  = $this->owner->Title;
             $width  = $width ? $width : $this->owner->Width;
@@ -277,37 +296,36 @@ class ImageExtension extends DataExtension {
 
 
     /**
-	 * Take the image and make a cached version.
-	 * Adds passes through Title
-	 * Based on Image::getFormattedImage()
-	 *
-	 * @param string  $format (optional)
-	 * @param int     $width  (optional)
-	 * @param int     $height (optional)
-	 * @return Image
-	 */
-	private function getAnnotatedImage($format = null, $width = null, $height = null) {
+     * Take the image and make a cached version.
+     * Adds passes through Title
+     * Based on Image::getFormattedImage()
+     *
+     * @param string  $format (optional)
+     * @param int     $width  (optional)
+     * @param int     $height (optional)
+     * @return Image
+     */
+    private function getAnnotatedImage($format = null, $width = null, $height = null)
+    {
 
-		# only resample if this image is already not the right size
-		if ($width && $height) {
-			if ($this->owner->getWidth() == $width && $this->owner->getHeight() == $height) {
-				return $this->owner;
-			}
-		}
-		else if ($width) {
-			if ($this->owner->getWidth() == $width) {
-				return $this->owner;
-			}
-		}
-		else if ($height) {
-			if ($this->owner->getHeight() == $height) {
-				return $this->owner;
-			}
-		}
-		$cached_image = $this->owner->getFormattedImage($format, $width, $height);
-		if (is_object($cached_image))
-			$cached_image->Title = $this->owner->Title;
-		return $cached_image;
-	}
-
+        # only resample if this image is already not the right size
+        if ($width && $height) {
+            if ($this->owner->getWidth() == $width && $this->owner->getHeight() == $height) {
+                return $this->owner;
+            }
+        } elseif ($width) {
+            if ($this->owner->getWidth() == $width) {
+                return $this->owner;
+            }
+        } elseif ($height) {
+            if ($this->owner->getHeight() == $height) {
+                return $this->owner;
+            }
+        }
+        $cached_image = $this->owner->getFormattedImage($format, $width, $height);
+        if (is_object($cached_image)) {
+            $cached_image->Title = $this->owner->Title;
+        }
+        return $cached_image;
+    }
 }
